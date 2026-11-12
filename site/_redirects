@@ -1,0 +1,5 @@
+https://capitalmedprep.ca/*      https://inkoprep.ca/:splat  301!
+https://www.capitalmedprep.ca/*  https://inkoprep.ca/:splat  301!
+/focus    /focus.html    200
+/FOCUS    /focus.html    200
+/support  /support.html  200

@@ -1,0 +1,4 @@
+# Static site: no build, publish the site folder.
+# _headers and _redirects inside site/ still apply.
+[build]
+  publish = "site"

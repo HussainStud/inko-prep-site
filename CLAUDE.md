@@ -14,6 +14,7 @@ Static site for Inko Prep, Hussain Ghuloum's tutoring and mentorship business in
 | `mentorship.html` | Mentorship |
 | `shop.html`, `shop/*.html` | Shop: free study calendar, notebook + pomodoro theme, sticker sheet |
 | `quiz.html` | "What's your study character?" quiz (art in `img/quiz/`) |
+| `book/` | Themed slot picker for the free 20-minute diagnostic (`book/index.html`) and its hours file `book/availability.json` |
 | `focus.html` | Short attention span page |
 | `support.html` | Mental health support |
 | `friend.html` | Bring a friend |
@@ -37,7 +38,10 @@ Static site for Inko Prep, Hussain Ghuloum's tutoring and mentorship business in
 
 ## Booking and contact
 
-- Main booking form (free 20-minute diagnostic): https://forms.gle/rrGaiQvjPC1QqRD37
+- Main booking: `/book/`, a slot picker in the site's own style. The visitor picks a day and a 20-minute time (shown in their time zone), fills in a short form, and it goes to Netlify Forms as `diagnostic-booking`. It is a request: Hussain emails within one business day to confirm. Every main-site booking button points here (`?course=BIO+1131` on course pages pre-fills the "help with" box). `juniors/`, `kuwait/`, `dal/` and `kwt/` keep their own links.
+- Hours and blocked times live in `site/book/availability.json` (Ottawa time, 24h). To block a time after confirming it, copy the `slot-ottawa` value from the Netlify form email (like `2026-11-19 18:20`) into `blockedSlots`. Whole days go in `blockedDates`. Mistyped JSON makes the picker show an email fallback, so check it after editing.
+- In Netlify: Forms, Notifications, add an email notification to booking@inkoprep.ca for `diagnostic-booking`, otherwise requests only show in the dashboard.
+- Old booking form (kept for Dal, Kuwait and the no-JavaScript fallback): https://forms.gle/rrGaiQvjPC1QqRD37
 - Juniors form: https://docs.google.com/forms/d/e/1FAIpQLSfdhh3FD9BGggNXBUCmNn8ojr3b_vsHuQy0wxdYWsO9z11MXg/viewform
 - Email: booking@inkoprep.ca
 - Ottawa phone and text: 343-553-9369

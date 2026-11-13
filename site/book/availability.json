@@ -1,0 +1,12 @@
+{
+  "_help": "PLACEHOLDER HOURS, edit me. All times are Ottawa time (24h). 'windows' apply every day. 'weekly' overrides one weekday (0 = Sunday ... 6 = Saturday), use [] for a day off. When you confirm a booking by email, copy its 'slot-ottawa' value from the Netlify form email (like 2026-11-19 18:20) into 'blockedSlots' so nobody else can pick it. 'blockedDates' takes whole days (2026-12-25). Keep the commas right, or the page shows an error.",
+  "timezone": "America/Toronto",
+  "slotMinutes": 20,
+  "stepMinutes": 20,
+  "leadHours": 12,
+  "daysAhead": 21,
+  "windows": [["08:00", "12:00"], ["15:00", "21:00"]],
+  "weekly": {},
+  "blockedDates": [],
+  "blockedSlots": []
+}

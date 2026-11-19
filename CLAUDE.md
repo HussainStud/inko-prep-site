@@ -40,11 +40,11 @@ Static site for Inko Prep, Hussain Ghuloum's tutoring and mentorship business in
 
 - Main booking: `/book/`, a slot picker in the site's own style. The visitor picks a day and an hour (times are always on the hour), chooses which city's time to see (Ottawa, Hamilton, London ON, Halifax, Kuwait, Dublin, London UK; `?city=kuwait` etc. preselects one), fills in a short form (name, email, help with, promo code), and it goes to Netlify Forms as `diagnostic-booking`. It is a request: Hussain emails within one business day to confirm. A button on the page opens the full Google Form instead. Every main-site booking button points here (`?course=BIO+1131` on course pages pre-fills the "help with" box). `juniors/`, `kuwait/`, `dal/` and `kwt/` keep their own links.
 - Bookable hours live in `site/book/availability.json` (Ottawa time, 24h). Busy times come from Hussain's calendar: `netlify/functions/busy.mjs` (served at `/api/busy`) reads the calendar's private iCal link from the `CALENDAR_ICS_URL` environment variable in Netlify and returns only start and end times, never event names. Anything busy is hidden from the picker within about 5 minutes, so a confirmed session only needs to go in the calendar. Events marked "free" and cancelled events are ignored. If the variable is missing or the calendar can't be read, the picker falls back to the hours file alone. Never put the iCal link in this repo.
-- In Netlify: Forms, Notifications, add an email notification to booking@inkoprep.ca for `diagnostic-booking`, otherwise requests only show in the dashboard.
+- In Netlify: Forms, Notifications, add an email notification to an inbox Hussain checks for `diagnostic-booking`, otherwise requests only show in the dashboard.
 - Old booking form (kept for Dal, Kuwait and the no-JavaScript fallback): https://forms.gle/rrGaiQvjPC1QqRD37
 - Juniors form: https://docs.google.com/forms/d/e/1FAIpQLSfdhh3FD9BGggNXBUCmNn8ojr3b_vsHuQy0wxdYWsO9z11MXg/viewform
-- Email: booking@inkoprep.ca
-- Ottawa phone and text: 343-553-9369
+- No email address on the site: booking@inkoprep.ca was never set up, so don't add it back. Contact is text 343-553-9369 (Ottawa pages, `sms:+13435539369`) or WhatsApp (Kuwait pages).
+- Ottawa phone and text: 343-553-9369 (in every footer outside `kuwait/`)
 - Kuwait WhatsApp: +965 9673 5835 (`https://wa.me/96596735835`)
 - Instagram: @capitalmedprep (until it's renamed)
 

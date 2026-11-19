@@ -1105,7 +1105,7 @@ main.wide { max-width: none; flex-basis: 100%; }
       <section id="picker" class="chapter" aria-label="pick a time" style="padding-block-end: 80px">
         <div class="bk" data-bk>
           <noscript>
-            <p class="form-error">this page needs javascript to show times. you can <a href="https://forms.gle/rrGaiQvjPC1QqRD37" target="_blank" rel="noopener">use the google form instead</a>, or email <a href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a>.</p>
+            <p class="form-error">this page needs javascript to show times. you can <a href="https://forms.gle/rrGaiQvjPC1QqRD37" target="_blank" rel="noopener">use the google form instead</a>, or email <a href="sms:+13435539369">text 343-553-9369</a>.</p>
           </noscript>
 
           <div class="bk-card" data-bk-pick>
@@ -1117,7 +1117,7 @@ main.wide { max-width: none; flex-basis: 100%; }
             <p class="bk-label bk-label-time" id="bk-time-label">pick a time</p>
             <div class="bk-slots" role="group" aria-labelledby="bk-time-label" data-bk-slots></div>
             <p class="bk-note" data-bk-status role="status" aria-live="polite">looking for open times...</p>
-            <p class="form-error" data-bk-empty hidden>i couldn't load the times just now. refresh the page, <a href="https://forms.gle/rrGaiQvjPC1QqRD37" target="_blank" rel="noopener">use the google form</a>, or email <a href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a>.</p>
+            <p class="form-error" data-bk-empty hidden>i couldn't load the times just now. refresh the page, <a href="https://forms.gle/rrGaiQvjPC1QqRD37" target="_blank" rel="noopener">use the google form</a>, or email <a href="sms:+13435539369">text 343-553-9369</a>.</p>
           </div>
 
           <form class="bk-card bk-form signup" name="diagnostic-booking" method="POST" action="/book/" data-netlify="true" netlify-honeypot="bot-field" data-bk-form hidden>
@@ -1138,7 +1138,7 @@ main.wide { max-width: none; flex-basis: 100%; }
               <div class="field"><label for="bk-promo">promo code <small>optional</small></label><input id="bk-promo" name="promo" type="text" autocomplete="off"></div>
             </div>
             <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>Email me about this booking. I agree to the <a href="../policies.html">policies</a>.</span></label>
-            <p class="form-error" data-error hidden>That didn't go through. Try again in a moment, or email booking@inkoprep.ca.</p>
+            <p class="form-error" data-error hidden>That didn't go through. Try again in a moment, or text 343-553-9369.</p>
             <button class="btn btn-sun" type="submit"><span class="label">request this time</span></button>
           </form>
 
@@ -1300,7 +1300,7 @@ main.wide { max-width: none; flex-basis: 100%; }
     if (!map.size) {
       daysEl.replaceChildren();
       slotsEl.replaceChildren();
-      statusEl.textContent = "no open times in the next few weeks. use the google form or email booking@inkoprep.ca and i'll find a time with you.";
+      statusEl.textContent = "no open times in the next few weeks. use the google form or text 343-553-9369 and i'll find a time with you.";
       return;
     }
     if (!map.has(selDay)) selDay = selSlot && map.has(dayKey(selSlot.ms, tz())) ? dayKey(selSlot.ms, tz()) : map.keys().next().value;
@@ -1352,7 +1352,7 @@ main.wide { max-width: none; flex-basis: 100%; }
   const showDone = (email) => {
     const end = selSlot.ms + (cfg.slotMinutes || 20) * 60000;
     const title = 'Inko Prep free diagnostic (requested)';
-    const note = "Requested time. I'll email to confirm. booking@inkoprep.ca";
+    const note = "Requested time. I'll email to confirm.";
     doneBox.querySelector('[data-bk-done-copy]').textContent = `thanks! i got your request for ${when(selSlot.ms, tz())} (${city[1]} time). i'll email ${email} within one business day to confirm it.`;
     doneBox.querySelector('[data-bk-gcal]').href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${stampUtc(selSlot.ms)}/${stampUtc(end)}&details=${encodeURIComponent(note)}`;
     doneBox.querySelector('[data-bk-ics]').onclick = () => {
@@ -1458,7 +1458,7 @@ main.wide { max-width: none; flex-basis: 100%; }
     <p class="fine">
       <span>© 2026 Inko Prep · tutoring + mentorship · Ottawa</span>
       <span>teaching in English + <span lang="ar" dir="rtl">العربية</span></span>
-      <a href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a>
+      <a href="sms:+13435539369">text 343-553-9369</a>
       <a href="https://www.instagram.com/capitalmedprep/" target="_blank" rel="noopener">@capitalmedprep</a>
       <a href="../about.html">who's teaching</a>
       <a href="../courses.html">courses</a>

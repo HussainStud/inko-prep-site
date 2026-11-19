@@ -2,3 +2,9 @@
 # _headers and _redirects inside site/ still apply.
 [build]
   publish = "site"
+
+# The booking page reads busy times from a calendar through this function (GET /api/busy).
+# It needs the CALENDAR_ICS_URL environment variable, set in Netlify, never in this repo.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

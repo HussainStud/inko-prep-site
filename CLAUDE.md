@@ -14,7 +14,7 @@ Static site for Inko Prep, Hussain Ghuloum's tutoring and mentorship business in
 | `mentorship.html` | Mentorship |
 | `shop.html`, `shop/*.html` | Shop: free study calendar, notebook + pomodoro theme, sticker sheet |
 | `quiz.html` | "What's your study character?" quiz (art in `img/quiz/`) |
-| `book/` | Themed slot picker for the free 20-minute diagnostic (`book/index.html`) and its hours file `book/availability.json` |
+| `book/` | Slot picker for the free 20-minute diagnostic (`book/index.html`) and its hours file `book/availability.json` |
 | `focus.html` | Short attention span page |
 | `support.html` | Mental health support |
 | `friend.html` | Bring a friend |
@@ -38,8 +38,8 @@ Static site for Inko Prep, Hussain Ghuloum's tutoring and mentorship business in
 
 ## Booking and contact
 
-- Main booking: `/book/`, a slot picker in the site's own style. The visitor picks a day and a 20-minute time (shown in their time zone), fills in a short form, and it goes to Netlify Forms as `diagnostic-booking`. It is a request: Hussain emails within one business day to confirm. Every main-site booking button points here (`?course=BIO+1131` on course pages pre-fills the "help with" box). `juniors/`, `kuwait/`, `dal/` and `kwt/` keep their own links.
-- Hours and blocked times live in `site/book/availability.json` (Ottawa time, 24h). To block a time after confirming it, copy the `slot-ottawa` value from the Netlify form email (like `2026-11-19 18:20`) into `blockedSlots`. Whole days go in `blockedDates`. Mistyped JSON makes the picker show an email fallback, so check it after editing.
+- Main booking: `/book/`, a slot picker in the site's own style. The visitor picks a day and an hour (times are always on the hour), chooses which city's time to see (Ottawa, Hamilton, London ON, Halifax, Kuwait, Dublin, London UK; `?city=kuwait` etc. preselects one), fills in a short form (name, email, help with, promo code), and it goes to Netlify Forms as `diagnostic-booking`. It is a request: Hussain emails within one business day to confirm. A button on the page opens the full Google Form instead. Every main-site booking button points here (`?course=BIO+1131` on course pages pre-fills the "help with" box). `juniors/`, `kuwait/`, `dal/` and `kwt/` keep their own links.
+- Bookable hours live in `site/book/availability.json` (Ottawa time, 24h). Busy times come from Hussain's calendar: `netlify/functions/busy.mjs` (served at `/api/busy`) reads the calendar's private iCal link from the `CALENDAR_ICS_URL` environment variable in Netlify and returns only start and end times, never event names. Anything busy is hidden from the picker within about 5 minutes, so a confirmed session only needs to go in the calendar. Events marked "free" and cancelled events are ignored. If the variable is missing or the calendar can't be read, the picker falls back to the hours file alone. Never put the iCal link in this repo.
 - In Netlify: Forms, Notifications, add an email notification to booking@inkoprep.ca for `diagnostic-booking`, otherwise requests only show in the dashboard.
 - Old booking form (kept for Dal, Kuwait and the no-JavaScript fallback): https://forms.gle/rrGaiQvjPC1QqRD37
 - Juniors form: https://docs.google.com/forms/d/e/1FAIpQLSfdhh3FD9BGggNXBUCmNn8ojr3b_vsHuQy0wxdYWsO9z11MXg/viewform
@@ -66,9 +66,9 @@ Motto: "we learn better by teaching." Students learn a topic on their own, come 
 ## Preview and deploy
 
 - Preview: `python3 -m http.server 8000 --directory site`, then open http://localhost:8000
-- Deploy on Netlify, either way works:
-  - drag the `site` folder onto the site's Deploys page, or
-  - connect this repo in Netlify. The publish folder is `site` and there's no build command.
+- Deploy on Netlify by connecting this repo (publish folder `site`, no build command). Netlify installs `package.json` and bundles `netlify/functions` on each deploy.
+  Dragging the `site` folder onto the Deploys page still publishes the pages but skips the calendar function, so the picker then ignores the calendar.
+- Preview with the calendar: `netlify dev` (Netlify CLI) with `CALENDAR_ICS_URL` set locally. The plain `http.server` preview works too, just without busy times.
 - Before a deploy:
   - check changed pages at 390px wide
   - check links from subfolder pages
@@ -83,5 +83,4 @@ Motto: "we learn better by teaching." Students learn a topic on their own, come 
 - A page on his teaching method, from his diagnostic monologue
 - Daily quiz that checks answer depth and key terms
 - Live quiz rooms with QR and session codes for club presentations
-- Promo code field in the main booking form
 - A link to `/juniors/` from the main site

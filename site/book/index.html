@@ -929,57 +929,57 @@ main.wide { max-width: none; flex-basis: 100%; }
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "book a free diagnostic", "url": "https://inkoprep.ca/book/", "isPartOf": {"@type": "EducationalOrganization", "name": "Inko Prep", "url": "https://inkoprep.ca/"}}</script>
 <style>
 /* ---------- booking page ---------- */
-.bk { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 330px); gap: 40px 56px; align-items: start; }
-.bk > noscript { grid-column: 1 / -1; }
-.bk-main { display: grid; gap: 28px; min-width: 0; }
+.bk-hero { padding-block-end: 30px !important; }
+.bk-alt { margin: 22px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; font-size: 15px; color: var(--muted); }
+.bk-alt .btn { font-size: 21px; }
+.bk { display: grid; gap: 24px; max-width: 760px; }
+.bk > noscript { display: block; }
 .bk-card {
   border: 2px solid var(--ink); border-radius: 26px; background: var(--paper);
   box-shadow: 5px 5px 0 var(--ink); padding: clamp(18px, 3vw, 30px); box-sizing: border-box; min-width: 0;
+  scroll-margin-top: calc(var(--header-h) + 16px);
 }
-.bk-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-bottom: 14px; }
-.bk-step { display: flex; align-items: center; gap: 12px; margin: 0; font: 700 30px/1.1 var(--hand); letter-spacing: .03em; color: var(--ink); }
-.bk-step .n {
-  display: inline-grid; place-items: center; width: 34px; height: 34px; border: 2px solid var(--ink); border-radius: 50%;
-  background: var(--sun); font: 700 22px/1 var(--hand); flex: none;
+.bk-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
+.bk-label { margin: 0; font: 700 26px/1.1 var(--hand); letter-spacing: .03em; color: var(--ink); }
+.bk-label-time { margin-top: 22px; }
+.bk-city { display: inline-flex; align-items: center; gap: 8px; font: 700 20px/1 var(--hand); letter-spacing: .02em; color: var(--muted); }
+.bk-city select {
+  min-height: 42px; max-width: 100%; padding: 0 34px 0 14px; border: 2px solid var(--ink); border-radius: 999px;
+  background: var(--paper); color: var(--ink); font: 600 14px/1.2 var(--sans); cursor: pointer;
 }
-.bk-step2 { margin: 26px 0 14px; }
-.bk-tz select {
-  min-height: 44px; max-width: 100%; padding: 0 36px 0 14px; border: 2px solid var(--ink); border-radius: 999px;
-  background: var(--paper); color: var(--ink); font: 500 14px/1.2 var(--sans); cursor: pointer;
-}
-.bk-days { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 10px; }
+.bk-days { display: flex; gap: 8px; margin: 12px -4px 0; padding: 10px 40px 10px 4px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); }
 .bk-day, .bk-slot {
-  appearance: none; -webkit-appearance: none; display: grid; justify-items: center; align-content: center; gap: 2px;
-  min-height: 48px; padding: 8px 6px 9px; box-sizing: border-box;
-  border: 2px solid var(--ink); border-radius: 16px; background: var(--paper); color: var(--ink);
-  font: 700 22px/1 var(--hand); letter-spacing: .02em; cursor: pointer; box-shadow: 0 3px 0 var(--ink);
+  appearance: none; -webkit-appearance: none; border: 2px solid var(--ink); background: var(--paper); color: var(--ink);
+  cursor: pointer; box-shadow: 0 3px 0 var(--ink); box-sizing: border-box;
   transition: transform .25s var(--spring), background .2s, box-shadow .2s;
 }
-.bk-day .wd { font-size: 18px; color: var(--muted); }
-.bk-day .dn { font-size: 30px; }
-.bk-day small { font: 500 12px/1 var(--sans); letter-spacing: 0; color: var(--muted); }
-.bk-day:hover, .bk-slot:hover { transform: scale(1.05); }
+.bk-day {
+  position: relative; flex: none; width: 60px; padding: 8px 0 9px; border-radius: 14px; scroll-snap-align: start;
+  display: grid; justify-items: center; gap: 3px; font: 700 26px/1 var(--hand);
+}
+.bk-day .wd { font-size: 16px; color: var(--muted); }
+.bk-day .mo {
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%); padding: 2px 7px 3px; border-radius: 999px;
+  background: var(--ink); color: var(--paper); font: 600 11px/1.1 var(--sans); white-space: nowrap;
+}
+.bk-slots { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.bk-slot { min-width: 86px; min-height: 46px; padding: 0 16px; border-radius: 999px; font: 700 23px/1 var(--hand); letter-spacing: .02em; white-space: nowrap; }
+.bk-day:hover, .bk-slot:hover { transform: translateY(-2px); }
 .bk-day:active, .bk-slot:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
 .bk-day[aria-pressed="true"] { background: var(--sun); }
+.bk-day[aria-pressed="true"] .wd { color: var(--ink); }
 .bk-slot[aria-pressed="true"] { background: var(--mint); }
-.bk-day[aria-pressed="true"] .wd, .bk-day[aria-pressed="true"] small { color: var(--ink); }
-.bk-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
-.bk-group { grid-column: 1 / -1; margin: 10px 0 0; font: 700 20px/1 var(--hand); letter-spacing: .03em; color: var(--muted); }
-.bk-group:first-child { margin-top: 0; }
-.bk-note { margin: 14px 0 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.bk-note { margin: 16px 0 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
 .bk-note a { color: var(--ink); }
 
 .bk-form { display: grid; gap: 16px; animation: bk-in .45s var(--spring) both; }
-.bk-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.bk-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.bk-summary .tag { font-size: 19px; padding: 7px 12px; }
 .bk-change {
   appearance: none; border: 0; background: none; padding: 6px 2px; color: var(--ink); font: 600 14px/1 var(--sans);
   text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 44px;
 }
-.field textarea {
-  width: 100%; box-sizing: border-box; min-height: 96px; padding: 12px 16px; border: 2px solid var(--ink); border-radius: 14px;
-  background: var(--paper); color: var(--ink); font: 500 16px/1.4 var(--sans); resize: vertical; -webkit-appearance: none; appearance: none;
-}
-.field textarea:focus { outline: none; box-shadow: 0 0 0 4px var(--sun-t), 0 3px 0 var(--ink); }
 .bk-form .btn { justify-self: start; }
 .bk-form .btn[disabled] { opacity: .6; cursor: progress; }
 
@@ -988,21 +988,11 @@ main.wide { max-width: none; flex-basis: 100%; }
 .bk-done-title { margin: 0; font: 700 clamp(40px, 6vw, 60px)/1.05 var(--hand); letter-spacing: .04em; color: var(--ink); }
 .bk-done .cta-row { margin-top: 22px; }
 
-.bk-side { border: 2px solid var(--ink); border-radius: 26px; background: var(--sky-t); box-shadow: 5px 5px 0 var(--ink); padding: clamp(18px, 3vw, 28px); position: sticky; top: calc(var(--header-h) + 24px); }
-.bk-side-title { margin: 0 0 12px; font: 700 28px/1.1 var(--hand); letter-spacing: .03em; color: var(--ink); }
-.bk-side .helps { margin: 0; }
-
 @keyframes bk-in { from { opacity: 0; transform: translateY(18px) scale(.98); } }
-@media (max-width: 900px) {
-  .bk { grid-template-columns: minmax(0, 1fr); }
-  .bk-side { position: static; order: 2; }
-}
 @media (max-width: 520px) {
-  .bk-days { grid-template-columns: repeat(auto-fill, minmax(68px, 1fr)); gap: 8px; }
-  .bk-slots { grid-template-columns: repeat(auto-fill, minmax(94px, 1fr)); gap: 8px; }
-  .bk-slot { font-size: 20px; letter-spacing: 0; white-space: nowrap; padding-inline: 4px; }
-  .bk-step { font-size: 26px; }
   .bk-card { box-shadow: 4px 4px 0 var(--ink); border-radius: 22px; }
+  .bk-label { font-size: 24px; }
+  .bk-slot { min-width: 78px; font-size: 21px; padding-inline: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bk-form, .bk-done { animation: none; }
@@ -1105,92 +1095,74 @@ main.wide { max-width: none; flex-basis: 100%; }
 
 <div class="wrap layout solo">
   <main id="main" class="wide">
-      <section class="hero page-hero" aria-labelledby="bk-title" style="padding-block-end: 48px">
+      <section class="hero page-hero bk-hero" aria-labelledby="bk-title">
         <p class="crumbs"><a href="../">home</a><span aria-hidden="true">/</span><span>book</span></p>
         <h1 id="bk-title"><span class="w" data-hero>pick</span> <span class="w" data-hero>a</span> <span class="w" data-hero><span class="mark" data-swipe style="--hl: var(--sun)">time</span></span></h1>
-        <p class="copy" data-rise>a free 20-minute diagnostic, to see where you are and what to fix first. pick a slot below and i'll email you within one business day to confirm it.</p>
+        <p class="copy" data-rise>a free 20-minute diagnostic. pick an hour that works and i'll email you to confirm it.</p>
+        <p class="bk-alt" data-rise>rather tell me more first? <a class="btn btn-small" href="https://forms.gle/rrGaiQvjPC1QqRD37" target="_blank" rel="noopener">use the full google form <span aria-hidden="true">↗</span></a></p>
       </section>
 
-      <section id="picker" class="chapter" aria-labelledby="bk-pick-title" style="padding-block-end: 80px">
+      <section id="picker" class="chapter" aria-label="pick a time" style="padding-block-end: 80px">
         <div class="bk" data-bk>
           <noscript>
-            <p class="form-error">this page needs javascript to show times. you can <a href="https://forms.gle/rrGaiQvjPC1QqRD37" target="_blank" rel="noopener">use the booking form instead</a>, or email <a href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a>.</p>
+            <p class="form-error">this page needs javascript to show times. you can <a href="https://forms.gle/rrGaiQvjPC1QqRD37" target="_blank" rel="noopener">use the google form instead</a>, or email <a href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a>.</p>
           </noscript>
 
-          <div class="bk-main">
-            <div class="bk-card" data-bk-pick>
-              <div class="bk-head">
-                <h2 id="bk-pick-title" class="bk-step"><span class="n" aria-hidden="true">1</span>pick a day</h2>
-                <label class="bk-tz"><span class="sr-only">time zone</span><select data-bk-tz aria-label="time zone"></select></label>
-              </div>
-              <div class="bk-days" role="group" aria-label="days with open times" data-bk-days></div>
-              <h2 class="bk-step bk-step2"><span class="n" aria-hidden="true">2</span>pick a time</h2>
-              <div class="bk-slots" role="group" aria-label="open times" data-bk-slots></div>
-              <p class="bk-note" data-bk-status role="status" aria-live="polite">looking for open times...</p>
-              <p class="form-error" data-bk-empty hidden>i couldn't load the times just now. refresh the page, or email <a href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a> and i'll find a time with you.</p>
+          <div class="bk-card" data-bk-pick>
+            <div class="bk-bar">
+              <p class="bk-label" id="bk-day-label">pick a day</p>
+              <label class="bk-city">times for <select data-bk-tz></select></label>
             </div>
-
-            <form class="bk-card bk-form signup" name="diagnostic-booking" method="POST" action="/book/" data-netlify="true" netlify-honeypot="bot-field" data-bk-form hidden>
-              <p class="hp"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-              <input type="hidden" name="form-name" value="diagnostic-booking">
-              <input type="hidden" name="slot-ottawa" data-f="slot-ottawa">
-              <input type="hidden" name="slot-utc" data-f="slot-utc">
-              <input type="hidden" name="when-ottawa" data-f="when-ottawa">
-              <input type="hidden" name="when-visitor" data-f="when-visitor">
-              <input type="hidden" name="visitor-timezone" data-f="visitor-timezone">
-              <h2 class="bk-step"><span class="n" aria-hidden="true">3</span>your details</h2>
-              <div class="bk-summary" aria-live="polite"><span class="tag"><span class="dot" style="--c: var(--mint)"></span><span data-bk-when>your time</span></span><button type="button" class="bk-change" data-bk-change>change</button></div>
-              <div class="row2">
-                <div class="field"><label for="bk-name">name</label><input id="bk-name" name="name" type="text" autocomplete="name" required></div>
-                <div class="field"><label for="bk-email">email</label><input id="bk-email" name="email" type="email" autocomplete="email" required placeholder="you@email.com"></div>
-              </div>
-              <div class="row2">
-                <div class="field"><label for="bk-school">school <small>optional</small></label>
-                  <select id="bk-school" name="school"><option value="">pick one</option><option>uOttawa</option><option>Carleton</option><option>High school</option><option>MCAT</option><option>Other</option></select>
-                </div>
-                <div class="field"><label for="bk-phone">phone or whatsapp <small>optional</small></label><input id="bk-phone" name="phone" type="tel" autocomplete="tel"></div>
-              </div>
-              <div class="field"><label for="bk-help">what do you want help with? <small>optional</small></label><textarea id="bk-help" name="help-with" rows="3" placeholder="a course code, a topic, an exam date..."></textarea></div>
-              <div class="field"><label for="bk-promo">promo or friend's name <small>optional</small></label><input id="bk-promo" name="promo" type="text" autocomplete="off"></div>
-              <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>Email me about this booking. I agree to the <a href="../policies.html">policies</a>.</span></label>
-              <p class="form-error" data-error hidden>That didn't go through. Try again in a moment, or email booking@inkoprep.ca.</p>
-              <button class="btn btn-sun" type="submit"><span class="label">request this time</span></button>
-            </form>
-
-            <div class="bk-card bk-done" data-bk-done tabindex="-1" hidden>
-              <h2 class="bk-done-title" data-bk-done-title><span class="mark" style="--hl: var(--mint)">request sent!</span></h2>
-              <p class="copy" data-bk-done-copy></p>
-              <div class="cta-row">
-                <button class="btn btn-sun" type="button" data-bk-ics>add to my calendar</button>
-                <a class="btn" href="#" target="_blank" rel="noopener" data-bk-gcal>google calendar</a>
-                <a class="btn" href="../">back home</a>
-              </div>
-              <p class="bk-note">your calendar entry says "requested" until i confirm by email.</p>
-            </div>
+            <div class="bk-days" role="group" aria-labelledby="bk-day-label" data-bk-days></div>
+            <p class="bk-label bk-label-time" id="bk-time-label">pick a time</p>
+            <div class="bk-slots" role="group" aria-labelledby="bk-time-label" data-bk-slots></div>
+            <p class="bk-note" data-bk-status role="status" aria-live="polite">looking for open times...</p>
+            <p class="form-error" data-bk-empty hidden>i couldn't load the times just now. refresh the page, <a href="https://forms.gle/rrGaiQvjPC1QqRD37" target="_blank" rel="noopener">use the google form</a>, or email <a href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a>.</p>
           </div>
 
-          <aside class="bk-side" aria-label="what to expect">
-            <h2 class="bk-side-title">what to expect</h2>
-            <ul class="helps">
-              <li style="--c: var(--sun)">20 minutes, free</li>
-              <li style="--c: var(--coral)">we look at what you're studying and where it feels shaky</li>
-              <li style="--c: var(--sky)">you leave knowing what to fix first</li>
-              <li style="--c: var(--mint)">i email you within one business day to confirm the time</li>
-            </ul>
-            <p class="bk-note">times are shown in your time zone. i'm in Ottawa. questions first? <a href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a></p>
-          </aside>
+          <form class="bk-card bk-form signup" name="diagnostic-booking" method="POST" action="/book/" data-netlify="true" netlify-honeypot="bot-field" data-bk-form hidden>
+            <p class="hp"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <input type="hidden" name="form-name" value="diagnostic-booking">
+            <input type="hidden" name="slot-ottawa" data-f="slot-ottawa">
+            <input type="hidden" name="slot-utc" data-f="slot-utc">
+            <input type="hidden" name="when-ottawa" data-f="when-ottawa">
+            <input type="hidden" name="when-visitor" data-f="when-visitor">
+            <input type="hidden" name="visitor-city" data-f="visitor-city">
+            <div class="bk-summary" aria-live="polite"><span class="tag"><span class="dot" style="--c: var(--mint)"></span><span data-bk-when>your time</span></span><button type="button" class="bk-change" data-bk-change>change</button></div>
+            <div class="row2">
+              <div class="field"><label for="bk-name">name</label><input id="bk-name" name="name" type="text" autocomplete="name" required></div>
+              <div class="field"><label for="bk-email">email</label><input id="bk-email" name="email" type="email" autocomplete="email" required placeholder="you@email.com"></div>
+            </div>
+            <div class="row2">
+              <div class="field"><label for="bk-help">help with <small>optional</small></label><input id="bk-help" name="help-with" type="text" autocomplete="off" placeholder="a course code or topic"></div>
+              <div class="field"><label for="bk-promo">promo code <small>optional</small></label><input id="bk-promo" name="promo" type="text" autocomplete="off"></div>
+            </div>
+            <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>Email me about this booking. I agree to the <a href="../policies.html">policies</a>.</span></label>
+            <p class="form-error" data-error hidden>That didn't go through. Try again in a moment, or email booking@inkoprep.ca.</p>
+            <button class="btn btn-sun" type="submit"><span class="label">request this time</span></button>
+          </form>
+
+          <div class="bk-card bk-done" data-bk-done tabindex="-1" hidden>
+            <h2 class="bk-done-title"><span class="mark" style="--hl: var(--mint)">request sent!</span></h2>
+            <p class="copy" data-bk-done-copy></p>
+            <div class="cta-row">
+              <button class="btn btn-sun" type="button" data-bk-ics>add to my calendar</button>
+              <a class="btn" href="#" target="_blank" rel="noopener" data-bk-gcal>google calendar</a>
+            </div>
+            <p class="bk-note">your calendar entry says "requested" until i confirm by email.</p>
+          </div>
         </div>
       </section>
     </main>
 <script>
-/* ---------- booking page: pick a day, pick a time, send the request ---------- */
+/* ---------- booking page: pick a day, pick an hour, send the request ---------- */
 (() => {
   const root = document.querySelector('[data-bk]');
   if (!root) return;
   const $ = (sel) => root.querySelector(sel);
   const daysEl = $('[data-bk-days]');
   const slotsEl = $('[data-bk-slots]');
-  const tzSel = $('[data-bk-tz]');
+  const citySel = $('[data-bk-tz]');
   const statusEl = $('[data-bk-status]');
   const emptyEl = $('[data-bk-empty]');
   const pickBox = $('[data-bk-pick]');
@@ -1199,6 +1171,18 @@ main.wide { max-width: none; flex-basis: 100%; }
   const whenEl = $('[data-bk-when]');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const pad = (n) => String(n).padStart(2, '0');
+  const HOME = 'America/Toronto';
+
+  /* the cities people can pick. every one is a whole number of hours from Ottawa, so on-the-hour stays on the hour */
+  const CITIES = [
+    ['ottawa', 'Ottawa', 'America/Toronto'],
+    ['hamilton', 'Hamilton', 'America/Toronto'],
+    ['london-on', 'London, ON', 'America/Toronto'],
+    ['halifax', 'Halifax', 'America/Halifax'],
+    ['kuwait', 'Kuwait', 'Asia/Kuwait'],
+    ['dublin', 'Dublin', 'Europe/Dublin'],
+    ['london-uk', 'London, UK', 'Europe/London'],
+  ];
 
   /* --- time zones without a library: wall-clock time in a zone <-> real instants --- */
   const dtfs = {};
@@ -1208,15 +1192,15 @@ main.wide { max-width: none; flex-basis: 100%; }
   const wall = (y, mo, d, h, mi, tz) => { const g = Date.UTC(y, mo - 1, d, h, mi); const o1 = offset(g, tz); let t = g - o1; const o2 = offset(t, tz); if (o2 !== o1) t = g - o2; return t; };
   const hm = (s) => { const [h, m] = s.split(':').map(Number); return h * 60 + m; };
 
-  /* --- turn the availability file into real slots (all in Ottawa wall time, DST safe) --- */
-  const buildSlots = (cfg, now) => {
-    const tz = cfg.timezone || 'America/Toronto';
+  /* --- hours file + calendar busy times -> open slots, always on the hour (Ottawa time, DST safe) --- */
+  const buildSlots = (cfg, busy, now) => {
+    const tz = cfg.timezone || HOME;
     const len = cfg.slotMinutes || 20;
-    const step = cfg.stepMinutes || len;
     const lead = (cfg.leadHours == null ? 12 : cfg.leadHours) * 3600e3;
     const ahead = cfg.daysAhead || 21;
     const noDay = new Set(cfg.blockedDates || []);
     const noSlot = new Set(cfg.blockedSlots || []);
+    const taken = (a, b) => busy.some(([s, e]) => a < e && b > s);
     const base = parts(now, tz);
     const out = [];
     for (let i = 0; i <= ahead; i++) {
@@ -1226,65 +1210,71 @@ main.wide { max-width: none; flex-basis: 100%; }
       if (noDay.has(key)) continue;
       const wk = cfg.weekly && cfg.weekly[dd.getUTCDay()] !== undefined ? cfg.weekly[dd.getUTCDay()] : cfg.windows || [];
       for (const [a, b] of wk) {
-        for (let m = hm(a); m + len <= hm(b); m += step) {
-          const stamp = `${key} ${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
+        for (let m = Math.ceil(hm(a) / 60) * 60; m + len <= hm(b); m += 60) {
+          const stamp = `${key} ${pad(m / 60)}:00`;
           if (noSlot.has(stamp)) continue;
-          const ms = wall(y, mo, d, Math.floor(m / 60), m % 60, tz);
-          if (ms >= now + lead) out.push({ ms, stamp });
+          const ms = wall(y, mo, d, m / 60, 0, tz);
+          if (ms >= now + lead && !taken(ms, ms + len * 60000)) out.push({ ms, stamp });
         }
       }
     }
     return out.sort((a, b) => a.ms - b.ms);
   };
 
-  /* --- formatting --- */
+  /* --- formatting: hours only, like "5 pm" --- */
   const fmt = (opts) => { const c = {}; return (ms, tz) => (c[tz] || (c[tz] = new Intl.DateTimeFormat('en-US', Object.assign({ timeZone: tz }, opts)))).format(ms); };
-  const fTime = fmt({ hour: 'numeric', minute: '2-digit', hour12: true });
+  const fHour = fmt({ hour: 'numeric', hour12: true });
   const fWd = fmt({ weekday: 'short' });
   const fMon = fmt({ month: 'short' });
   const fDay = fmt({ day: 'numeric' });
-  const fLong = fmt({ weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
-  const tzShort = (tz) => { const p = new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'short' }).formatToParts(Date.now()).find((x) => x.type === 'timeZoneName'); return p ? p.value : tz; };
-  const tzLabel = (tz) => `${tz.split('/').pop().replace(/_/g, ' ')} (${tzShort(tz)})`;
-  const dayKey = (ms, tz) => { const p = parts(ms, tz); return `${p.year}-${pad(p.month)}-${pad(p.day)}`; };
+  const fDate = fmt({ weekday: 'short', month: 'short', day: 'numeric' });
   const low = (s) => s.toLowerCase();
+  const when = (ms, tz) => low(`${fDate(ms, tz)}, ${fHour(ms, tz)}`);
+  const dayKey = (ms, tz) => { const p = parts(ms, tz); return `${p.year}-${pad(p.month)}-${pad(p.day)}`; };
 
   /* --- state --- */
   let cfg = null;
+  let busy = [];
   let slots = [];
-  let tz = 'America/Toronto';
+  let city = CITIES[0];
   let selDay = null;
   let selSlot = null;
+  const tz = () => city[2];
 
-  const deviceTz = () => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Toronto'; } catch (e) { return 'America/Toronto'; } };
-
-  const fillZones = () => {
-    const list = [];
-    [deviceTz(), 'America/Toronto', 'Asia/Kuwait', 'America/Halifax'].forEach((z) => { if (!list.includes(z)) list.push(z); });
-    tzSel.replaceChildren(...list.map((z) => { const o = document.createElement('option'); o.value = z; o.textContent = z === deviceTz() ? `${tzLabel(z)}, your time` : tzLabel(z); return o; }));
-    tz = list[0];
-    tzSel.value = tz;
+  /* --- the city list: ?city=kuwait, then the last pick, then this device's zone, then Ottawa --- */
+  const store = { get: () => { try { return localStorage.getItem('bk-city'); } catch (e) { return null; } }, set: (v) => { try { localStorage.setItem('bk-city', v); } catch (e) { /* fine */ } } };
+  const fillCities = () => {
+    let device = HOME;
+    try { device = Intl.DateTimeFormat().resolvedOptions().timeZone || HOME; } catch (e) { /* fine */ }
+    if (!CITIES.some((c) => c[2] === device)) CITIES.push(['here', `my time (${device.split('/').pop().replace(/_/g, ' ')})`, device]);
+    citySel.replaceChildren(...CITIES.map((c) => { const o = document.createElement('option'); o.value = c[0]; o.textContent = c[1]; return o; }));
+    const asked = (new URLSearchParams(location.search).get('city') || '').toLowerCase();
+    city = CITIES.find((c) => c[0] === asked) || CITIES.find((c) => c[0] === store.get()) || CITIES.find((c) => c[2] === device) || CITIES[0];
+    citySel.value = city[0];
   };
 
   const groupByDay = () => {
     const map = new Map();
-    slots.forEach((s) => { const k = dayKey(s.ms, tz); if (!map.has(k)) map.set(k, []); map.get(k).push(s); });
+    slots.forEach((s) => { const k = dayKey(s.ms, tz()); if (!map.has(k)) map.set(k, []); map.get(k).push(s); });
     return map;
   };
 
   const renderDays = (map) => {
     daysEl.replaceChildren();
+    let lastMonth = '';
     for (const [k, list] of map) {
+      const ms = list[0].ms;
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'bk-day';
-      b.dataset.k = k;
       b.setAttribute('aria-pressed', String(k === selDay));
-      b.innerHTML = `<span class="wd"></span><span class="dn"></span><small></small>`;
-      b.querySelector('.wd').textContent = low(fWd(list[0].ms, tz));
-      b.querySelector('.dn').textContent = fDay(list[0].ms, tz);
-      b.querySelector('small').textContent = `${low(fMon(list[0].ms, tz))} · ${list.length}`;
-      b.setAttribute('aria-label', `${fLong(list[0].ms, tz).split(',').slice(0, 2).join(',')}, ${list.length} open times`);
+      b.setAttribute('aria-label', low(fDate(ms, tz())));
+      const month = low(fMon(ms, tz()));
+      b.innerHTML = `${month !== lastMonth ? '<span class="mo"></span>' : ''}<span class="wd"></span><span class="dn"></span>`;
+      if (month !== lastMonth) b.querySelector('.mo').textContent = month;
+      lastMonth = month;
+      b.querySelector('.wd').textContent = low(fWd(ms, tz()));
+      b.querySelector('.dn').textContent = fDay(ms, tz());
       b.addEventListener('click', () => { selDay = k; renderAll(); });
       daysEl.appendChild(b);
     }
@@ -1293,26 +1283,16 @@ main.wide { max-width: none; flex-basis: 100%; }
   const renderSlots = (map) => {
     slotsEl.replaceChildren();
     const list = map.get(selDay) || [];
-    const groups = [['morning', (h) => h < 12], ['afternoon', (h) => h >= 12 && h < 17], ['evening', (h) => h >= 17]];
-    groups.forEach(([name, test]) => {
-      const inGroup = list.filter((s) => test(parts(s.ms, tz).hour));
-      if (!inGroup.length) return;
-      const h = document.createElement('p');
-      h.className = 'bk-group';
-      h.textContent = name;
-      slotsEl.appendChild(h);
-      inGroup.forEach((s) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'bk-slot';
-        b.setAttribute('aria-pressed', String(!!selSlot && selSlot.ms === s.ms));
-        b.textContent = low(fTime(s.ms, tz));
-        b.addEventListener('click', () => choose(s));
-        slotsEl.appendChild(b);
-      });
+    list.forEach((s) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'bk-slot';
+      b.setAttribute('aria-pressed', String(!!selSlot && selSlot.ms === s.ms));
+      b.textContent = low(fHour(s.ms, tz()));
+      b.addEventListener('click', () => choose(s));
+      slotsEl.appendChild(b);
     });
-    const n = list.length;
-    statusEl.textContent = n ? `${n} open ${n === 1 ? 'time' : 'times'} on ${low(fWd(list[0].ms, tz))} ${low(fMon(list[0].ms, tz))} ${fDay(list[0].ms, tz)}, shown in ${tzLabel(tz)}.` : '';
+    statusEl.textContent = city[2] === HOME ? 'times are in Ottawa time.' : `times are in ${city[1]} time. i'm in Ottawa.`;
   };
 
   const renderAll = () => {
@@ -1320,26 +1300,28 @@ main.wide { max-width: none; flex-basis: 100%; }
     if (!map.size) {
       daysEl.replaceChildren();
       slotsEl.replaceChildren();
-      statusEl.textContent = "no open times in the next few weeks. email booking@inkoprep.ca and i'll find a time with you.";
+      statusEl.textContent = "no open times in the next few weeks. use the google form or email booking@inkoprep.ca and i'll find a time with you.";
       return;
     }
-    if (!map.has(selDay)) selDay = selSlot && map.has(dayKey(selSlot.ms, tz)) ? dayKey(selSlot.ms, tz) : map.keys().next().value;
+    if (!map.has(selDay)) selDay = selSlot && map.has(dayKey(selSlot.ms, tz())) ? dayKey(selSlot.ms, tz()) : map.keys().next().value;
     renderDays(map);
     renderSlots(map);
+    const on = daysEl.querySelector('[aria-pressed="true"]');
+    if (on) daysEl.scrollLeft = Math.max(0, on.offsetLeft - daysEl.offsetLeft - 8);
   };
 
-  /* --- choosing a time opens the details form --- */
+  /* --- choosing a time opens the short form --- */
+  const summary = () => `${when(selSlot.ms, tz())}${city[2] === HOME ? '' : ` (${city[1]})`} · 20 min`;
   const choose = (s) => {
     selSlot = s;
-    const map = groupByDay();
-    renderSlots(map);
+    renderSlots(groupByDay());
     const set = (name, v) => { const el = form.querySelector(`[data-f="${name}"]`); if (el) el.value = v; };
     set('slot-ottawa', s.stamp);
     set('slot-utc', new Date(s.ms).toISOString());
-    set('when-ottawa', `${fLong(s.ms, 'America/Toronto')} Ottawa time`);
-    set('when-visitor', `${fLong(s.ms, tz)} ${tzShort(tz)}`);
-    set('visitor-timezone', tz);
-    whenEl.textContent = `${low(fLong(s.ms, tz))} · ${tzShort(tz)} · 20 min`;
+    set('when-ottawa', `${fDate(s.ms, HOME)}, ${fHour(s.ms, HOME)} Ottawa time`);
+    set('when-visitor', `${fDate(s.ms, tz())}, ${fHour(s.ms, tz())} ${city[1]} time`);
+    set('visitor-city', city[1]);
+    whenEl.textContent = summary();
     form.hidden = false;
     form.querySelector('[data-error]').hidden = true;
     const first = form.querySelector('#bk-name');
@@ -1354,7 +1336,16 @@ main.wide { max-width: none; flex-basis: 100%; }
     if (sel) sel.focus({ preventScroll: true });
   });
 
-  tzSel.addEventListener('change', () => { tz = tzSel.value; renderAll(); if (selSlot && !form.hidden) whenEl.textContent = `${low(fLong(selSlot.ms, tz))} · ${tzShort(tz)} · 20 min`; });
+  citySel.addEventListener('change', () => {
+    city = CITIES.find((c) => c[0] === citySel.value) || CITIES[0];
+    store.set(city[0]);
+    renderAll();
+    if (selSlot && !form.hidden) {
+      whenEl.textContent = summary();
+      form.querySelector('[data-f="when-visitor"]').value = `${fDate(selSlot.ms, tz())}, ${fHour(selSlot.ms, tz())} ${city[1]} time`;
+      form.querySelector('[data-f="visitor-city"]').value = city[1];
+    }
+  });
 
   /* --- add to calendar --- */
   const stampUtc = (ms) => new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
@@ -1362,7 +1353,7 @@ main.wide { max-width: none; flex-basis: 100%; }
     const end = selSlot.ms + (cfg.slotMinutes || 20) * 60000;
     const title = 'Inko Prep free diagnostic (requested)';
     const note = "Requested time. I'll email to confirm. booking@inkoprep.ca";
-    doneBox.querySelector('[data-bk-done-copy]').textContent = `thanks! i got your request for ${low(fLong(selSlot.ms, tz))} (${tzShort(tz)}). i'll email ${email} within one business day to confirm it.`;
+    doneBox.querySelector('[data-bk-done-copy]').textContent = `thanks! i got your request for ${when(selSlot.ms, tz())} (${city[1]} time). i'll email ${email} within one business day to confirm it.`;
     doneBox.querySelector('[data-bk-gcal]').href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${stampUtc(selSlot.ms)}/${stampUtc(end)}&details=${encodeURIComponent(note)}`;
     doneBox.querySelector('[data-bk-ics]').onclick = () => {
       const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Inko Prep//Booking//EN', 'BEGIN:VEVENT', `UID:${Date.now()}-${Math.random().toString(36).slice(2, 8)}@inkoprep.ca`, `DTSTAMP:${stampUtc(Date.now())}`, `DTSTART:${stampUtc(selSlot.ms)}`, `DTEND:${stampUtc(end)}`, `SUMMARY:${title}`, `DESCRIPTION:${note}`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
@@ -1380,12 +1371,26 @@ main.wide { max-width: none; flex-basis: 100%; }
     doneBox.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
   };
 
-  /* --- submit as a Netlify form. before sending, check the time is still free --- */
+  /* --- load the hours file and the calendar. if the calendar can't be read, the hours file still works --- */
   const loadConfig = async () => {
     const r = await fetch('/book/availability.json', { cache: 'no-store' });
     if (!r.ok) throw new Error('availability');
     return r.json();
   };
+  const loadBusy = async () => {
+    try {
+      const r = await fetch('/api/busy', { cache: 'no-store' });
+      if (!r.ok) return [];
+      const j = await r.json();
+      return Array.isArray(j.busy) ? j.busy : [];
+    } catch (_) { return []; }
+  };
+  const refresh = async () => {
+    [cfg, busy] = await Promise.all([loadConfig(), loadBusy()]);
+    slots = buildSlots(cfg, busy, Date.now());
+  };
+
+  /* --- submit as a Netlify form. before sending, check the hour is still free --- */
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
@@ -1399,8 +1404,7 @@ main.wide { max-width: none; flex-basis: 100%; }
     const live = /(^|\.)(inkoprep|capitalmedprep)\.ca$|netlify\.app$/.test(location.hostname);
     let ok = !live;
     try {
-      cfg = await loadConfig();
-      slots = buildSlots(cfg, Date.now());
+      await refresh();
       if (!slots.some((s) => s.ms === selSlot.ms)) {
         selSlot = null;
         form.hidden = true;
@@ -1411,7 +1415,7 @@ main.wide { max-width: none; flex-basis: 100%; }
         label.textContent = idle;
         return;
       }
-    } catch (_) { /* the list is only a safety check, send the request anyway */ }
+    } catch (_) { /* the check is only a safety net, send the request anyway */ }
     if (live) {
       try {
         const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(fd).toString() });
@@ -1431,13 +1435,11 @@ main.wide { max-width: none; flex-basis: 100%; }
   if (wanted) { const help = form.querySelector('#bk-help'); if (help && !help.value) help.value = wanted; }
 
   /* --- go --- */
+  fillCities();
   (async () => {
     try {
-      cfg = await loadConfig();
-      fillZones();
-      slots = buildSlots(cfg, Date.now());
+      await refresh();
       renderAll();
-      if (!slots.length) statusEl.textContent = "no open times in the next few weeks. email booking@inkoprep.ca and i'll find a time with you.";
     } catch (_) {
       statusEl.textContent = '';
       emptyEl.hidden = false;

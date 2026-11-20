@@ -1,0 +1,8 @@
+{
+  "name": "inko-prep-site",
+  "private": true,
+  "description": "inkoprep.ca. The site itself has no build step; this file is only for the calendar function in netlify/functions.",
+  "dependencies": {
+    "ical-expander": "3.2.0"
+  }
+}

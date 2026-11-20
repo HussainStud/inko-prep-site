@@ -14,12 +14,13 @@ Static site for Inko Prep, Hussain Ghuloum's tutoring and mentorship business in
 | `mentorship.html` | Mentorship |
 | `shop.html`, `shop/*.html` | Shop: free study calendar, notebook + pomodoro theme, sticker sheet |
 | `quiz.html` | "What's your study character?" quiz (art in `img/quiz/`) |
+| `book/` | Slot picker for the free 20-minute diagnostic (`book/index.html`) and its hours file `book/availability.json` |
 | `focus.html` | Short attention span page |
 | `support.html` | Mental health support |
 | `friend.html` | Bring a friend |
 | `policies.html`, `calendar-thanks.html`, `404.html` | Policies, thank-you page, not found |
 | `juniors/` | Inko Prep Jr (grades 6 to 8), with its own Google Form |
-| `kuwait/` | Kuwait branch: `index.html` (Arabic, Kuwaiti dialect), `en.html`, `courses.html`, `courses-en.html`. Online only, WhatsApp contact |
+| `kuwait/` | Kuwait branch: `index.html` (Arabic, Kuwaiti dialect), `en.html`, `courses.html`, `courses-en.html`, `quiz.html` + `quiz-en.html` (quizzes), `calendar-thanks.html` + `calendar-thanks-en.html`. Online only, WhatsApp contact |
 | `dal/`, `kwt/` | Dalhousie promo pages (codes DAL20 and KWT20) |
 | `fonts/` | Self-hosted woff2: Gaegu, Instrument Sans, Baloo Bhaijaan 2, IBM Plex Sans Arabic |
 | `js/lenis.min.js` | Smooth scrolling, the only shared script |
@@ -37,10 +38,15 @@ Static site for Inko Prep, Hussain Ghuloum's tutoring and mentorship business in
 
 ## Booking and contact
 
-- Main booking form (free 20-minute diagnostic): https://forms.gle/rrGaiQvjPC1QqRD37
+- Main booking: `/book/`, a slot picker in the site's own style. The visitor picks a day and an hour (times are always on the hour), chooses which city's time to see (Ottawa, Hamilton, London ON, Halifax, Kuwait, Dublin, London UK; `?city=kuwait` etc. preselects one), fills in a short form (name, email, help with, promo code), and it goes to Netlify Forms as `diagnostic-booking`. It is a request: Hussain emails within one business day to confirm. A button on the page opens the full Google Form instead. Every main-site booking button points here (`?course=BIO+1131` on course pages pre-fills the "help with" box). `juniors/`, `kuwait/`, `dal/` and `kwt/` keep their own links.
+- Bookable hours live in `site/book/availability.json` (Ottawa time, 24h). Busy times come from Hussain's calendar: `netlify/functions/busy.mjs` (served at `/api/busy`) reads the calendar's private iCal link from the `CALENDAR_ICS_URL` environment variable in Netlify and returns only start and end times, never event names. Anything busy is hidden from the picker within about 5 minutes, so a confirmed session only needs to go in the calendar. Events marked "free" and cancelled events are ignored. If the variable is missing or the calendar can't be read, the picker falls back to the hours file alone. Never put the iCal link in this repo.
+- In Netlify: Forms, Notifications, add an email notification to an inbox Hussain checks for `diagnostic-booking`, otherwise requests only show in the dashboard.
+- Old booking form (kept for Dal, Kuwait and the no-JavaScript fallback): https://forms.gle/rrGaiQvjPC1QqRD37
+- Kuwait quizzes: `kuwait/quiz.html` (Arabic) and `quiz-en.html`. Three sections: الثانوي / high school (biology, chemistry, physics, math), القدرات / Qudurat (math, chemistry), الجامعة / university (8 courses). High school and Qudurat questions are written for Kuwait in Arabic and English; university quizzes reuse the Canadian course page quizzes (questions stay in English, interface in Arabic). Quiz data is JSON in `#kq-data`. `#hs`, `#qudurat`, `#uni` jump to a section and `#hs-bio`, `#q-math`, `#uni-orgo` etc. open a quiz. The result screen has a WhatsApp button with the score pre-filled.
+- Kuwait study calendar: `downloads/inko-prep-kuwait-calendar-ar.pdf` and `-en.pdf` (Dec 2026 to Aug 2027, MoE 2026/2027 school dates, Islamic holidays marked approximate). Signup is the `kuwait-calendar` Netlify form in the `#calendar` section of `kuwait/index.html` and `en.html` (fields: email, first-name, stage, language). Add a Netlify email notification for it too. Preview images are `img/kw-cal-{ar,en}-{cover,jan,jun}.jpg`.
 - Juniors form: https://docs.google.com/forms/d/e/1FAIpQLSfdhh3FD9BGggNXBUCmNn8ojr3b_vsHuQy0wxdYWsO9z11MXg/viewform
-- Email: booking@inkoprep.ca
-- Ottawa phone and text: 343-553-9369
+- No email address on the site: booking@inkoprep.ca was never set up, so don't add it back. Contact is text 343-553-9369 (Ottawa pages, `sms:+13435539369`) or WhatsApp (Kuwait pages).
+- Ottawa phone and text: 343-553-9369 (in every footer outside `kuwait/`)
 - Kuwait WhatsApp: +965 9673 5835 (`https://wa.me/96596735835`)
 - Instagram: @capitalmedprep (until it's renamed)
 
@@ -62,9 +68,9 @@ Motto: "we learn better by teaching." Students learn a topic on their own, come 
 ## Preview and deploy
 
 - Preview: `python3 -m http.server 8000 --directory site`, then open http://localhost:8000
-- Deploy on Netlify, either way works:
-  - drag the `site` folder onto the site's Deploys page, or
-  - connect this repo in Netlify. The publish folder is `site` and there's no build command.
+- Deploy on Netlify by connecting this repo (publish folder `site`, no build command). Netlify installs `package.json` and bundles `netlify/functions` on each deploy.
+  Dragging the `site` folder onto the Deploys page still publishes the pages but skips the calendar function, so the picker then ignores the calendar.
+- Preview with the calendar: `netlify dev` (Netlify CLI) with `CALENDAR_ICS_URL` set locally. The plain `http.server` preview works too, just without busy times.
 - Before a deploy:
   - check changed pages at 390px wide
   - check links from subfolder pages
@@ -79,5 +85,4 @@ Motto: "we learn better by teaching." Students learn a topic on their own, come 
 - A page on his teaching method, from his diagnostic monologue
 - Daily quiz that checks answer depth and key terms
 - Live quiz rooms with QR and session codes for club presentations
-- Promo code field in the main booking form
 - A link to `/juniors/` from the main site

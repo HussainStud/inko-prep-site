@@ -1010,6 +1010,64 @@ html[lang="ar"] .lang-big { line-height: 1.3; }
 .kw-contact .email { font-weight: 600; color: var(--ink); direction: ltr; }
 .site-footer .kw-fine a { direction: ltr; }
 </style>
+<style>
+/* ---------- kuwait quizzes ---------- */
+.hp { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; left: auto !important; }
+.dq { margin-top: 26px; max-width: 46rem; padding: clamp(18px, 3vw, 28px); border: 2px solid var(--ink); border-radius: 22px; background: var(--paper); box-shadow: 6px 6px 0 var(--sky); scroll-margin-top: calc(var(--header-h) + 18px); }
+.dq-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
+.dq-dots { list-style: none; margin: 0; padding: 0; display: flex; gap: 7px; }
+.dq-dots li { width: 16px; height: 16px; border: 2px solid var(--ink); border-radius: 50%; background: var(--paper); transition: background-color .25s, transform .35s var(--spring); }
+.dq-dots li.is-now { background: var(--sun); transform: scale(1.15); }
+.dq-dots li.is-right { background: var(--mint); }
+.dq-dots li.is-wrong { background: var(--coral); }
+.dq-count { margin: 0; font: 400 20px/1.2 var(--hand); letter-spacing: .02em; color: var(--muted); }
+.dq-topic { display: inline-block; margin: 18px 0 0; padding: 3px 12px; border-radius: 999px; background: var(--sky-t); font: 600 13px/1.6 var(--sans); color: var(--ink); }
+.dq-q { margin: 12px 0 0; font-family: var(--sans); font-weight: 600; font-size: clamp(18px, 2.4vw, 21px); line-height: 1.6; letter-spacing: 0; color: var(--ink); outline: none; }
+.dq-hl { padding: 0 .14em; margin: 0 -.14em; background: linear-gradient(transparent 52%, var(--sun) 52%); color: inherit; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.dq-opts { margin-top: 18px; display: grid; gap: 10px; }
+.dq-opt { -webkit-appearance: none; appearance: none; display: flex; align-items: flex-start; gap: 12px; width: 100%; padding: 12px 14px; border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); color: var(--ink); font: 500 16px/1.5 var(--sans); text-align: start; cursor: pointer; box-shadow: 0 3px 0 var(--ink); transition: transform .3s var(--spring), background-color .2s; }
+@media (hover: hover) { .dq-opt:hover:not(:disabled) { transform: translateY(-2px); background: var(--sun-t); } }
+.dq-opt:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
+.dq-opt:disabled { cursor: default; }
+.dq-l { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border: 2px solid var(--ink); border-radius: 50%; background: var(--paper); font: 700 17px/1 var(--hand); }
+.dq-t { min-width: 0; padding-top: 3px; }
+.dq-opt.is-right { background: var(--mint-t); } .dq-opt.is-right .dq-l { background: var(--mint); }
+.dq-opt.is-wrong { background: var(--coral-t); } .dq-opt.is-wrong .dq-l { background: var(--coral); }
+.dq-opt:disabled:not(.is-right):not(.is-wrong) { opacity: .55; }
+.dq-why { margin-top: 16px; padding: 12px 16px; border-radius: 14px; font-size: 15px; line-height: 1.7; color: var(--ink); }
+.dq-why.is-right { background: var(--mint-t); } .dq-why.is-wrong { background: var(--coral-t); }
+.dq-why strong { font: 700 20px/1.2 var(--hand); margin-inline-end: 6px; }
+.dq-next { margin-top: 16px; display: flex; justify-content: flex-end; }
+.dq-score { display: flex; align-items: baseline; gap: 4px; font-family: var(--hand); font-weight: 700; color: var(--ink); direction: ltr; justify-content: flex-start; }
+[dir="rtl"] .dq-done .dq-score { justify-content: flex-end; }
+.dq-num { display: inline-grid; place-items: center; min-width: 96px; height: 96px; padding: 0 10px; box-sizing: border-box; border: 2.5px solid var(--ink); border-radius: 50%; background: var(--sun); font-size: 60px; line-height: 1; }
+.dq-of { font-size: 40px; }
+.dq-verdict { margin: 16px 0 0; font-weight: 700; font-size: clamp(28px, 4.4vw, 38px); line-height: 1.2; outline: none; }
+.dq-msg { margin: 8px 0 0; font-size: 16px; line-height: 1.7; color: var(--text); max-width: 36em; }
+.dq-review { margin-top: 16px; }
+.dq-review-label { margin: 0 0 8px; font: 700 22px/1.2 var(--hand); }
+.dq-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.dq-chip { padding: 5px 12px; border: 2px solid var(--ink); border-radius: 999px; background: var(--coral-t); font: 600 13.5px/1.4 var(--sans); }
+.dq-book { margin-top: 22px; padding-top: 20px; border-top: 2px dashed var(--line); }
+.dq-book-big { margin: 0; font: 700 28px/1.2 var(--hand); color: var(--ink); }
+.dq-book-small { margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--text); }
+.dq-note { margin: 22px 0 0; font-size: 12.5px; line-height: 1.6; color: var(--muted); }
+.kq-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 2px dashed var(--line); }
+.kq-name { margin: 0; font: 700 26px/1.2 var(--hand); color: var(--ink); }
+.kq-close { -webkit-appearance: none; appearance: none; border: 2px solid var(--ink); border-radius: 999px; background: var(--paper); padding: 6px 14px; font: 600 14px/1.2 var(--sans); color: var(--ink); cursor: pointer; min-height: 40px; }
+.qz-grid { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(210px, 100%), 1fr)); gap: 14px; max-width: 46rem; }
+.qz-card { -webkit-appearance: none; appearance: none; box-sizing: border-box; width: 100%; text-decoration: none; height: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px 18px; border: 2px solid var(--ink); border-radius: 18px; background: var(--paper); color: var(--ink); text-align: start; cursor: pointer; box-shadow: 5px 5px 0 var(--c, var(--sun)); transition: transform .3s var(--spring), box-shadow .3s; }
+@media (hover: hover) { .qz-card:hover { transform: translateY(-3px) rotate(-.6deg); box-shadow: 7px 8px 0 var(--c, var(--sun)); } }
+.qz-card:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+.qz-card.is-on { background: var(--sun-t); }
+.qz-name { font: 700 28px/1.15 var(--hand); }
+.qz-sub { font-size: 14px; line-height: 1.5; color: var(--text); }
+.qz-meta { margin-top: auto; padding-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.qz-chip { padding: 2px 10px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); font: 600 12.5px/1.5 var(--sans); }
+.qz-go { font: 700 20px/1 var(--hand); }
+.kq-more .cta-row { margin-top: 20px; }
+</style>
+<style>@media (max-width: 1279px) { .top-nav a[data-nav="questions"], .top-nav a[data-nav="parents"] { display: none; } } @media (max-width: 1120px) { .top-nav a[data-nav="how"] { display: none; } }</style>
 <a class="skip" href="#main">skip to content</a>
 <header class="site-header">
   <div class="wrap header-row">
@@ -1020,6 +1078,7 @@ html[lang="ar"] .lang-big { line-height: 1.3; }
     <nav class="top-nav" aria-label="On this page">
       <a href="#about" data-nav="about">about</a>
       <a href="/kuwait/courses-en.html" data-nav="teach">what I teach</a>
+      <a href="/kuwait/quiz-en.html" data-nav="quiz">quizzes</a>
       <a href="#how" data-nav="how">how it works</a>
       <a href="#parents" data-nav="parents">for parents</a>
       <a href="#questions" data-nav="questions">questions</a>
@@ -1033,7 +1092,7 @@ html[lang="ar"] .lang-big { line-height: 1.3; }
   </div>
   <div id="mobile-menu" class="mobile-menu" hidden>
     <nav class="wrap" aria-label="menu">
-      <ul><li><a href="#about">about</a></li><li><a href="/kuwait/courses-en.html">what I teach</a></li><li><a href="#how">how it works</a></li><li><a href="#parents">for parents</a></li><li><a href="#questions">questions</a></li></ul>
+      <ul><li><a href="#about">about</a></li><li><a href="/kuwait/courses-en.html">what I teach</a></li><li><a href="/kuwait/quiz-en.html">quizzes</a></li><li><a href="#how">how it works</a></li><li><a href="#parents">for parents</a></li><li><a href="#questions">questions</a></li></ul>
       <p style="margin: 6px 0 0"><a class="kw-lang" href="/kuwait/" lang="ar" dir="rtl" hreflang="ar">عربي</a></p>
       <a class="btn btn-sun" href="https://wa.me/96596735835?text=Hi%20Hussain%2C%20I%27d%20like%20to%20ask%20about%20tutoring%20%F0%9F%93%9A" target="_blank" rel="noopener">message me on WhatsApp</a>
     </nav>
@@ -1054,6 +1113,8 @@ html[lang="ar"] .lang-big { line-height: 1.3; }
       <li><a href="#how" data-chapter="how"><span class="dot" aria-hidden="true"></span>how it works</a></li>
       <li><a href="#parents" data-chapter="parents"><span class="dot" aria-hidden="true"></span>for parents</a></li>
       <li><a href="#questions" data-chapter="questions"><span class="dot" aria-hidden="true"></span>questions</a></li>
+      <li><a href="#quizzes" data-chapter="quizzes"><span class="dot" aria-hidden="true"></span>quizzes</a></li>
+      <li><a href="#calendar" data-chapter="calendar"><span class="dot" aria-hidden="true"></span>calendar</a></li>
       <li><a href="#book" data-chapter="book"><span class="dot" aria-hidden="true"></span>book</a></li>
     </ul>
   </nav>
@@ -1194,16 +1255,49 @@ html[lang="ar"] .lang-big { line-height: 1.3; }
       <dl class="qa" data-stagger><div><dt>are sessions only online?</dt><dd>Yes. Every session for students in Kuwait is online, over a video call.</dd></div><div><dt>when are sessions?</dt><dd>We set them in the free chat, in Kuwait time, usually after school.</dd></div><div><dt>how much is it?</dt><dd>Your first 20 minutes are free, and we agree on the price in Kuwaiti dinar before your first paid session.</dd></div><div><dt>what about private schools?</dt><dd>Send me your curriculum and subject, and I'll tell you honestly if I can help.</dd></div><div><dt>are you part of the Ministry or a school?</dt><dd>No. Inko Prep is independent and isn't affiliated with the Ministry of Education or any school or university.</dd></div></dl>
     </section>
 
+    <section id="quizzes" data-nav="quiz" class="chapter" aria-labelledby="quizzes-title">
+      <h2 id="quizzes-title" data-rise>test <span class="mark" data-swipe style="--hl: var(--mint)">yourself.</span></h2>
+      <p class="copy" data-rise>Free quick quizzes, 6 questions each, with the why after every answer.</p>
+      <ul class="qz-grid" data-stagger="pop"><li><a class="qz-card" href="/kuwait/quiz-en.html#hs" style="--c: var(--mint)"><span class="qz-name">high school</span><span class="qz-sub">biology, chemistry, physics, math</span><span class="qz-meta"><span class="qz-go">start <span aria-hidden="true">→</span></span></span></a></li><li><a class="qz-card" href="/kuwait/quiz-en.html#qudurat" style="--c: var(--sun)"><span class="qz-name">Qudurat</span><span class="qz-sub">math and chemistry</span><span class="qz-meta"><span class="qz-go">start <span aria-hidden="true">→</span></span></span></a></li><li><a class="qz-card" href="/kuwait/quiz-en.html#uni" style="--c: var(--sky)"><span class="qz-name">university</span><span class="qz-sub">eight first and second year courses</span><span class="qz-meta"><span class="qz-go">start <span aria-hidden="true">→</span></span></span></a></li></ul>
+    </section>
+
+    <section id="calendar" data-nav="calendar" class="chapter" aria-labelledby="calendar-title">
+      <div class="cal-art" aria-hidden="true">
+        <figure class="cal-page p1" data-slide="fan" style="--r: -7deg; --c: var(--sun)"><img src="/img/kw-cal-en-cover.jpg" alt="" width="480" height="371" loading="lazy" decoding="async"></figure><figure class="cal-page p2" data-slide="fan" style="--r: 2deg; --c: var(--coral)"><img src="/img/kw-cal-en-jan.jpg" alt="" width="480" height="371" loading="lazy" decoding="async"></figure><figure class="cal-page p3" data-slide="fan" style="--r: 8deg; --c: var(--sky)"><img src="/img/kw-cal-en-jun.jpg" alt="" width="480" height="371" loading="lazy" decoding="async"></figure>
+        <span class="free-tag" data-pop>free!</span>
+      </div>
+      <h2 id="calendar-title" data-rise style="margin-top: 34px">a free <span class="mark" data-swipe style="--hl: var(--mint)">study calendar.</span></h2>
+      <p class="copy" data-rise>Nine printable months, December 2026 to August 2027, in the same notebook style. Public school exams, holidays, Ramadan and Eid are already on it. Print it, stick it up, and write your exam dates in as soon as you get them.</p>
+      <ul class="inside" data-stagger="pop"><li class="tag"><span class="dot" style="--c: var(--sun)"></span>school exams</li><li class="tag"><span class="dot" style="--c: var(--sky)"></span>public holidays</li><li class="tag"><span class="dot" style="--c: var(--lilac)"></span>Ramadan + Eid</li><li class="tag"><span class="dot" style="--c: var(--mint)"></span>science days</li></ul>
+      <form class="signup" name="kuwait-calendar" method="POST" action="/kuwait/calendar-thanks-en.html" data-netlify="true" netlify-honeypot="bot-field" data-signup="calendar" data-rise>
+        <p class="hp"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <input type="hidden" name="form-name" value="kuwait-calendar">
+        <input type="hidden" name="language" value="en">
+        <div class="row2">
+          <div class="field"><label for="kcal-email">email</label><input id="kcal-email" name="email" type="email" autocomplete="email" required placeholder="you@email.com" dir="ltr"></div>
+          <div class="field"><label for="kcal-name">first name <small>optional</small></label><input id="kcal-name" name="first-name" type="text" autocomplete="given-name"></div>
+        </div>
+        <div class="field"><label for="kcal-stage">I am a <small>optional</small></label>
+          <select id="kcal-stage" name="stage"><option value="">pick one</option><option>high school student</option><option>university student</option><option>parent</option><option>other</option></select>
+        </div>
+        <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>Send me the calendar and occasional study tips from Inko Prep. I can unsubscribe anytime.</span></label>
+        <p class="form-error" data-error hidden>That didn't go through. Try again in a moment, or WhatsApp me and I'll send it to you.</p>
+        <button class="btn btn-sun" type="submit" data-sending="sending..."><span class="label">send me the calendar</span></button>
+      </form>
+      <div class="signup-done" data-signup-done="calendar" hidden aria-live="polite">
+        <h3>it's yours!</h3>
+        <p>Thanks for signing up. Print it, stick it on your wall, and write your exam dates in as soon as you get them.</p>
+        <a class="btn btn-sun" href="/downloads/inko-prep-kuwait-calendar-en.pdf" target="_blank" rel="noopener">open the calendar</a>
+        <p class="note"><a href="/downloads/inko-prep-kuwait-calendar-ar.pdf" target="_blank" rel="noopener">Arabic version</a></p>
+        <p class="note" data-preview-note hidden>Preview only: on the live site your email is saved before the download appears.</p>
+      </div>
+    </section>
+
     <section id="book" data-nav="" class="chapter" aria-labelledby="book-title" style="padding-block-end: 90px">
       <h2 id="book-title" data-rise>ready to <span class="mark" data-swipe style="--hl: var(--mint)">start?</span></h2>
       <p class="copy" data-rise>Message me on WhatsApp with your grade or university, the subject, and the best time for you in Kuwait time. I reply within a day.</p>
       <div class="cta-row" data-rise><a class="btn btn-sun" href="https://wa.me/96596735835?text=Hi%20Hussain%2C%20I%27d%20like%20to%20ask%20about%20tutoring%20%F0%9F%93%9A" target="_blank" rel="noopener">message me on WhatsApp</a></div>
       <p class="kw-phone" data-rise><span>WhatsApp</span> <a href="https://wa.me/96596735835?text=Hi%20Hussain%2C%20I%27d%20like%20to%20ask%20about%20tutoring%20%F0%9F%93%9A" target="_blank" rel="noopener" dir="ltr">+965 9673 5835</a></p>
-      <div class="kw-contact" data-rise>
-        <span>or email me</span>
-        <a class="email" id="email" href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a>
-        <button class="copy-btn" id="copy-email" type="button" aria-label="Copy the email address" data-idle="copy" data-copied="copied!" data-selected="selected"><svg viewBox="0 0 20 20" aria-hidden="true"><g class="sheets"><rect class="back" x="6.5" y="1.5" width="11" height="12" rx="2.5"/><rect class="front" x="2.5" y="6" width="11" height="12.5" rx="2.5"/></g><path class="tick" d="M3 10.5 L8 15.5 L17.5 4.5"/></svg><span class="label">copy</span></button>
-      </div>
     </section>
   </main>
 </div>
@@ -1217,7 +1311,8 @@ html[lang="ar"] .lang-big { line-height: 1.3; }
     <p class="fine kw-fine">
       <span>© 2026 Inko Prep · online tutoring for students in Kuwait</span>
       <a href="https://wa.me/96596735835?text=Hi%20Hussain%2C%20I%27d%20like%20to%20ask%20about%20tutoring%20%F0%9F%93%9A" target="_blank" rel="noopener" dir="ltr">+965 9673 5835</a>
-      <a href="mailto:booking@inkoprep.ca">booking@inkoprep.ca</a>
+      <a href="/kuwait/quiz-en.html">quizzes</a>
+      <a href="/kuwait/en.html#calendar">free calendar</a>
       <a href="/kuwait/" lang="ar" dir="rtl" hreflang="ar">عربي</a>
       <span>Not affiliated with the Ministry of Education or any school or university</span>
     </p>
@@ -1530,7 +1625,7 @@ html[lang="ar"] .lang-big { line-height: 1.3; }
       if (!signup.checkValidity()) { signup.reportValidity(); return; }
       const fd = new FormData(signup);
       if (!fd.get('form-name')) fd.set('form-name', signup.getAttribute('name'));
-      btn.disabled = true; label.textContent = 'sending...';
+      btn.disabled = true; label.textContent = btn.dataset.sending || 'sending...';
       const live = /(^|\.)(inkoprep|capitalmedprep)\.ca$|netlify\.app$/.test(location.hostname);
       let ok = !live;
       if (live) {

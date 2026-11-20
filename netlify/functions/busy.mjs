@@ -30,6 +30,23 @@ const toMs = (t) => (t.isDate || !t.zone || t.zone.tzid === 'floating')
   ? wall(t.year, t.month, t.day, t.isDate ? 0 : t.hour, t.isDate ? 0 : t.minute, HOME)
   : t.toJSDate().getTime();
 
+// which service a link belongs to, for problem messages (never the link itself)
+const kind = (link) => {
+  try {
+    const h = new URL(clean(link)).hostname;
+    if (/google\.com$/.test(h)) return 'Google';
+    if (/icloud\.com$/.test(h)) return 'iCloud';
+    if (/outlook|office365|live\.com$/.test(h)) return 'Outlook';
+    return h;
+  } catch { return 'not a link'; }
+};
+// webcal:// -> https://, and Outlook's "HTML" publish link -> its ICS twin
+const clean = (link) => {
+  let u = link.trim().replace(/^["'<]+|["'>,;]+$/g, '').replace(/^webcal:/i, 'https:');   // stray quotes or commas from pasting
+  if (/^https:\/\/[^/]*(outlook|office365|live\.com)/i.test(u)) u = u.replace(/\/calendar\.html(?=$|[?#])/i, '/calendar.ics');
+  return u;
+};
+
 const json = (body, maxAge) => new Response(JSON.stringify(body), {
   headers: {
     'content-type': 'application/json; charset=utf-8',
@@ -54,18 +71,34 @@ export default async () => {
     if (b > a) busy.push([a, b]);
   };
 
-  try {
-    for (const link of links) {
-      const r = await fetch(link.replace(/^webcal:/i, 'https:'), { headers: { 'user-agent': 'inkoprep.ca booking page' } });
-      if (!r.ok) throw new Error(`calendar answered ${r.status}`);
-      const { events, occurrences } = new IcalExpander({ ics: await r.text(), maxIterations: 2000 }).between(from, to);
+  // Each link is read on its own, so one broken link doesn't hide the others.
+  // Problems are described without the link itself, so they're safe to show in /api/busy.
+  const problems = [];
+  for (const [i, raw] of links.entries()) {
+    const name = `calendar ${i + 1} of ${links.length} (${kind(raw)})`;
+    let text;
+    try {
+      const r = await fetch(clean(raw), { headers: { 'user-agent': 'inkoprep.ca booking page' }, signal: AbortSignal.timeout(8000) });
+      if (!r.ok) { problems.push(`${name} answered ${r.status}${r.status === 404 ? ', check the link is the private or published iCal one' : ''}`); continue; }
+      text = await r.text();
+    } catch (err) {
+      problems.push(`${name} ${err.name === 'TimeoutError' ? 'took too long to answer' : 'could not be reached, check the link'}`);
+      continue;
+    }
+    if (!/BEGIN:VCALENDAR/i.test(text.slice(0, 3000))) {
+      problems.push(`${name} is a web page, not an iCal feed: copy the ICS / iCal link instead`);
+      continue;
+    }
+    try {
+      const { events, occurrences } = new IcalExpander({ ics: text, maxIterations: 2000 }).between(from, to);
       events.forEach((ev) => add(ev.component, ev.startDate, ev.endDate));
       occurrences.forEach((o) => add(o.item.component, o.startDate, o.endDate));
+    } catch {
+      problems.push(`${name} could not be read as a calendar`);   // the parser's own message can quote event text, so it stays out
     }
-  } catch (err) {
-    console.error('busy: could not read the calendar.', err.message);
-    return json({ ok: false, reason: 'calendar not reachable', busy: [] }, 30);
   }
+  if (problems.length) console.error('busy:', problems.join(' | '));
+  if (problems.length === links.length) return json({ ok: false, reason: 'calendar not reachable', problems, busy: [] }, 30);
 
   busy.sort((x, y) => x[0] - y[0]);
   const merged = [];
@@ -74,7 +107,7 @@ export default async () => {
     if (last && iv[0] <= last[1]) last[1] = Math.max(last[1], iv[1]);
     else merged.push(iv);
   }
-  return json({ ok: true, updated: new Date().toISOString(), busy: merged }, 300);
+  return json({ ok: true, updated: new Date().toISOString(), busy: merged, ...(problems.length ? { problems } : {}) }, 300);
 };
 
 export const config = { path: '/api/busy' };

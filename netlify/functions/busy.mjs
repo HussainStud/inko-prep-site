@@ -42,7 +42,7 @@ const kind = (link) => {
 };
 // webcal:// -> https://, and Outlook's "HTML" publish link -> its ICS twin
 const clean = (link) => {
-  let u = link.trim().replace(/^webcal:/i, 'https:');
+  let u = link.trim().replace(/^["'<]+|["'>,;]+$/g, '').replace(/^webcal:/i, 'https:');   // stray quotes or commas from pasting
   if (/^https:\/\/[^/]*(outlook|office365|live\.com)/i.test(u)) u = u.replace(/\/calendar\.html(?=$|[?#])/i, '/calendar.ics');
   return u;
 };

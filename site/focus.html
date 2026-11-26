@@ -803,6 +803,50 @@ main.wide { max-width: none; flex-basis: 100%; }
 .fx-step h2 { font-weight: 700; font-size: clamp(28px, 4.6vw, 38px); line-height: 1.02; letter-spacing: .03em; }
 .fx-step p { margin: 6px 0 0; font-size: 16px; line-height: 1.55; color: var(--text); }
 .fx-done { margin: 30px 0 0; font: 700 clamp(26px, 3.6vw, 32px)/1.1 var(--hand); letter-spacing: .03em; color: var(--ink); }
+/* louder: full colour cards, hard shadows */
+.fx-steps { gap: 24px; }
+.fx-step { border-width: 3px; background: var(--c); box-shadow: 7px 7px 0 var(--ink); transition: transform .3s var(--spring); }
+.fx-step:hover { transform: rotate(calc(var(--r) * -1.6)) scale(1.02); }
+.fx-step p { color: var(--ink); }
+.fx-n { border-width: 3px; background: var(--paper); }
+.fx-timer { border-width: 3px; box-shadow: 0 3px 0 var(--ink); transition: background-color .3s; }
+.fx-timer.is-low { background: var(--coral); }
+.fx-timer.is-done { background: var(--mint); }
+/* ticker */
+.fx-ticker { max-width: 44rem; margin: 30px 0 0; border: 3px solid var(--ink); border-radius: 999px; background: var(--ink); overflow: hidden; transform: rotate(-1.2deg); box-shadow: 5px 5px 0 var(--coral); }
+.fx-track { display: flex; width: max-content; animation: fx-marquee 16s linear infinite; }
+.fx-track span { display: inline-flex; align-items: center; gap: 14px; padding: 11px 14px 13px 0; font: 700 26px/1 var(--hand); letter-spacing: .03em; color: var(--sun); white-space: nowrap; }
+.fx-track svg { width: 20px; height: 20px; flex: none; }
+@keyframes fx-marquee { to { transform: translateX(-50%); } }
+/* the why game */
+.fx-why { max-width: 44rem; margin: 56px 0 0; padding: 22px 22px 24px; border: 3px solid var(--ink); border-radius: 26px; background: var(--paper); box-shadow: 8px 8px 0 var(--sky); }
+.fx-kicker { margin: 0; font: 700 20px/1.1 var(--hand); letter-spacing: .04em; color: var(--muted); }
+.fx-why h2 { margin: 6px 0 0; font-weight: 700; font-size: clamp(30px, 5vw, 42px); line-height: 1.02; letter-spacing: .02em; }
+.fx-chat { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 0; }
+.fx-msg { max-width: 85%; margin: 0; padding: 9px 16px 11px; border: 2.5px solid var(--ink); border-radius: 20px; font-size: 16px; line-height: 1.45; color: var(--ink); animation: fx-msg .45s var(--spring) both; }
+.fx-msg b { display: block; font: 700 17px/1 var(--hand); letter-spacing: .04em; color: var(--muted); margin-bottom: 3px; }
+.fx-msg.you { align-self: flex-end; background: var(--sun); border-bottom-right-radius: 6px; font: 700 24px/1.1 var(--hand); letter-spacing: .02em; }
+.fx-msg.them { align-self: flex-start; background: var(--sky-t, #DDEEFC); border-bottom-left-radius: 6px; }
+.fx-msg.stop { align-self: flex-start; background: var(--coral); font: 700 34px/1 var(--hand); letter-spacing: .03em; animation: fx-stop .55s var(--spring) both; }
+.fx-why-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 18px; }
+.fx-why-btn { min-width: 132px; font-size: 30px; }
+.fx-again { border: 0; padding: 4px 2px; background: none; font: 600 14.5px/1.2 var(--sans); color: var(--muted); text-decoration: underline; cursor: pointer; }
+.fx-out { margin: 16px 0 0; font-size: 16px; line-height: 1.55; color: var(--text); }
+@keyframes fx-msg { from { opacity: 0; transform: translateY(12px) scale(.9); } to { opacity: 1; transform: none; } }
+@keyframes fx-stop { 0% { opacity: 0; transform: scale(2) rotate(-8deg); } 60% { opacity: 1; transform: scale(.94) rotate(-3deg); } 100% { transform: rotate(-3deg); } }
+/* the finish line */
+.fx-done.is-done { display: inline-block; padding: 8px 20px 12px; border: 3px solid var(--ink); border-radius: 20px; background: var(--mint); box-shadow: 6px 6px 0 var(--ink); transform: rotate(-1.5deg); animation: jelly .7s both; }
+/* sticky progress bar */
+.fx-bar { position: fixed; left: 50%; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 50; display: flex; align-items: center; gap: 12px; width: min(600px, calc(100% - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))); padding: 7px 8px 7px 10px; box-sizing: border-box; border: 3px solid var(--ink); border-radius: 999px; background: var(--paper); box-shadow: 0 5px 0 var(--ink); transform: translate(-50%, 160%); transition: transform .45s var(--spring); }
+.fx-bar.on { transform: translate(-50%, 0); }
+.fx-ring { flex: none; width: 42px; height: 42px; }
+.fx-ring circle { fill: none; stroke-width: 6; }
+.fx-ring .bgc { stroke: var(--line); }
+.fx-ring .fgc { stroke: var(--coral); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke .3s; }
+.fx-lbl { flex: 1; min-width: 0; font: 700 22px/1.05 var(--hand); letter-spacing: .03em; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fx-bar .btn { flex: none; min-height: 44px; padding: 0 18px; font-size: 22px; box-shadow: 0 3px 0 var(--ink); }
+@media (max-width: 430px) { .fx-bar { gap: 9px; } .fx-ring { width: 36px; height: 36px; } .fx-lbl { font-size: 19px; } .fx-bar .btn { padding: 0 13px; font-size: 19px; } }
+@media (max-width: 374px) { .fx-ring { display: none; } .fx-bar { padding-left: 16px; } }
 @media (max-width: 520px) {
   .fx-step { gap: 12px; padding: 14px 14px 16px 12px; }
   .fx-n { width: 42px; height: 42px; font-size: 25px; }
@@ -1133,6 +1177,7 @@ main.wide { max-width: none; flex-basis: 100%; }
       <p class="fx-timer" data-rise><svg class="sp-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5 L12 9.5 M10 3 L14 3 M12 3 L12 6 M18.5 6.5 L20 5"/></svg><span class="fx-t" aria-live="off">20 seconds</span></p>
       <h1 id="fx-title"><span class="w" data-hero>ok, you</span> <span class="w" data-hero><span class="mark" data-swipe style="--hl: var(--sun)">scanned it.</span></span></h1>
       <p class="copy" data-rise>Proud of you. Here's how tutoring works here, in about 20 seconds.</p>
+      <div class="fx-ticker" data-rise aria-label="short sprints, real breaks, you do the talking, first 20 minutes free"><div class="fx-track" aria-hidden="true"><span>short sprints<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--coral)"/></svg></span><span>real breaks<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--sky)"/></svg></span><span>you do the talking<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--mint)"/></svg></span><span>first 20 minutes free<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--pink)"/></svg></span><span>no two-hour lectures<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--paper)"/></svg></span><span>short sprints<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--coral)"/></svg></span><span>real breaks<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--sky)"/></svg></span><span>you do the talking<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--mint)"/></svg></span><span>first 20 minutes free<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--pink)"/></svg></span><span>no two-hour lectures<svg aria-hidden="true" viewBox="0 0 40 40"><use href="#sparkle" style="fill: var(--paper)"/></svg></span></div></div>
       <ol class="fx-steps" data-stagger="pop">
         <li class="fx-step" style="--c: var(--sun); --r: -1.2deg">
           <span class="fx-n" aria-hidden="true">1</span>
@@ -1151,11 +1196,26 @@ main.wide { max-width: none; flex-basis: 100%; }
           <div><h2>made for short attention spans.</h2><p>If you zone out halfway through a page, same. That's why I teach this way.</p></div>
         </li>
       </ol>
+      <section class="fx-why" data-rise aria-labelledby="fx-why-title">
+        <p class="fx-kicker">a session in 15 seconds</p>
+        <h2 id="fx-why-title">you be me. keep asking <span class="mark" style="--hl: var(--sun)">why?</span></h2>
+        <div class="fx-chat" aria-live="polite">
+          <p class="fx-msg you">why do we sweat?</p>
+          <p class="fx-msg them"><b>student</b>to cool down.</p>
+        </div>
+        <div class="fx-why-acts"><button class="btn btn-sun fx-why-btn" type="button">why?</button><button class="fx-again" type="button" hidden>again</button></div>
+        <p class="fx-out" hidden>that's a session. the student did all the explaining, I just kept asking why. that's how it sticks.</p>
+      </section>
       <p class="fx-done" data-rise>that's it. you made it to the end.</p>
       <div class="cta-row" data-rise><a class="btn btn-sun" href="book/">book a free 20-minute diagnostic</a><a class="btn" href="courses.html">see what I tutor</a></div>
       <p class="fineprint" data-rise>Science, math and MCAT tutoring in Ottawa. If it's more than focus and school feels heavy, here's <a href="support.html">where to get support</a>.</p>
     </section>
   </main>
+</div>
+<div class="fx-bar" role="complementary" aria-label="reading progress">
+  <svg class="fx-ring" viewBox="0 0 42 42" aria-hidden="true"><circle class="bgc" cx="21" cy="21" r="17"/><circle class="fgc" cx="21" cy="21" r="17" stroke-dasharray="106.8" stroke-dashoffset="106.8"/></svg>
+  <span class="fx-lbl">keep going</span>
+  <a class="btn btn-sun" href="book/">book free 20 min</a>
 </div>
 
 <footer class="site-footer">
@@ -1191,9 +1251,101 @@ main.wide { max-width: none; flex-basis: 100%; }
   const tick = () => {
     left -= 1;
     el.textContent = left > 0 ? `0:${String(left).padStart(2, '0')} left` : 'done. nice focus.';
+    el.parentElement.classList.toggle('is-low', left > 0 && left <= 5);
+    el.parentElement.classList.toggle('is-done', left <= 0);
     if (left > 0) setTimeout(tick, 1000);
   };
   setTimeout(tick, 1000);
+})();
+</script>
+<script>
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const t0 = Date.now();
+  const burst = (x, y, n = 12) => {
+    if (reduce) return;
+    const cs = ['#FFCF3F', '#FF7A5C', '#6CB6F5', '#A8E39A'];
+    for (let i = 0; i < n; i++) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 40 40'); s.setAttribute('class', 'spark'); s.setAttribute('aria-hidden', 'true');
+      s.innerHTML = '<path d="M20 2 Q22 18 38 20 Q22 22 20 38 Q18 22 2 20 Q18 18 20 2 Z" fill="' + cs[i % 4] + '" stroke="#111111" stroke-width="2.4" stroke-linejoin="round"/>';
+      document.body.appendChild(s);
+      const a = (Math.PI * 2 * i) / n + Math.random() * .5, d = 70 + Math.random() * 70, dx = Math.cos(a) * d, dy = Math.sin(a) * d - 30;
+      s.animate([{ transform: `translate(${x - 11}px, ${y - 11}px) scale(.2)`, opacity: 1 },
+                 { transform: `translate(${x - 11 + dx}px, ${y - 11 + dy}px) scale(${.7 + Math.random() * .8}) rotate(200deg)`, opacity: 1, offset: .7 },
+                 { transform: `translate(${x - 11 + dx * 1.1}px, ${y + dy + 30}px) scale(0) rotate(260deg)`, opacity: 0 }],
+                { duration: 1000 + Math.random() * 300, easing: 'cubic-bezier(.2,.8,.3,1)' }).onfinish = () => s.remove();
+    }
+  };
+  const mmss = ms => { const s = Math.max(1, Math.round(ms / 1000)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
+
+  /* the why game */
+  const game = document.querySelector('.fx-why');
+  if (game) {
+    const chat = game.querySelector('.fx-chat'), btn = game.querySelector('.fx-why-btn'), again = game.querySelector('.fx-again'), out = game.querySelector('.fx-out');
+    const first = chat.innerHTML;
+    const steps = [
+      ['why?', 'sweat evaporates off your skin, and that pulls heat away.'],
+      ['but why does that cool you down?', 'turning liquid water into gas takes energy. it takes that energy from your skin, as heat.'],
+      ['why?', 'the fastest water molecules escape first. the slower ones left behind are cooler, so you are too.'],
+      ['why?', null]
+    ];
+    let i = 0;
+    const say = (cls, html) => { const p = document.createElement('p'); p.className = 'fx-msg ' + cls; p.innerHTML = html; chat.appendChild(p); return p; };
+    btn.addEventListener('click', () => {
+      if (i >= steps.length) return;
+      const [q, a] = steps[i++];
+      say('you', q);
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.disabled = false;
+        if (a) { say('them', '<b>student</b>' + a); return; }
+        const st = say('stop', 'ok, stop!');
+        const r = st.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 16);
+        btn.hidden = true; again.hidden = false; out.hidden = false;
+      }, reduce ? 0 : 420);
+    });
+    again.addEventListener('click', () => { i = 0; chat.innerHTML = first; btn.hidden = false; again.hidden = true; out.hidden = true; btn.focus(); });
+  }
+
+  /* sticky progress bar */
+  const bar = document.querySelector('.fx-bar'), ring = bar && bar.querySelector('.fgc'), lbl = bar && bar.querySelector('.fx-lbl');
+  const foot = document.querySelector('.site-footer'), cta = document.querySelector('main .cta-row');
+  let footIn = false, ctaIn = false, ticking = false;
+  const words = [[.18, 'keep going'], [.5, 'still here!'], [.85, 'almost there'], [.97, 'so close'], [2, 'you made it!']];
+  const update = () => {
+    ticking = false;
+    if (!bar) return;
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight), p = Math.min(1, window.scrollY / max);
+    ring.style.strokeDashoffset = String(106.8 * (1 - p));
+    ring.style.stroke = p > .97 ? 'var(--mint)' : p > .45 ? 'var(--sun)' : 'var(--coral)';
+    lbl.textContent = words.find(([a]) => p < a)[1];
+    bar.classList.toggle('on', window.scrollY > 260 && !footIn && !ctaIn);
+  };
+  if (bar) {
+    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es => es.forEach(e => { if (e.target === foot) footIn = e.isIntersecting; else ctaIn = e.isIntersecting; update(); })).observe(foot);
+      if (cta) new IntersectionObserver(es => es.forEach(e => { ctaIn = e.isIntersecting; update(); })).observe(cta);
+    }
+    update();
+  }
+
+  /* the finish line: say how long it took, once */
+  const done = document.querySelector('.fx-done');
+  if (done && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      setTimeout(() => {
+        done.textContent = `that's it. you made it to the end in ${mmss(Date.now() - t0)}.`;
+        done.classList.add('is-done');
+        const r = done.getBoundingClientRect(); burst(r.left + Math.min(r.width, 300) / 2, r.top + r.height / 2, 14);
+      }, 500);
+    }), { threshold: 1 });
+    io.observe(done);
+  }
 })();
 </script>
 <script>
